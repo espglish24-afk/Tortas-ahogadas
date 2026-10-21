@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pedidos - Tortas Ahogadas a Domicilio</title>
+  <title>Pedidos - Tortas Ahogadas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,22 +18,18 @@
       --card-bg: #ffffff;
       --text: #2c3e50;
       --border-radius: 16px;
+      --whatsapp-green: #25D366;
+      --whatsapp-dark: #128C7E;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--cream);
       color: var(--text);
       line-height: 1.5;
-      padding: 20px 12px;
-      background-image: radial-gradient(#e2d3c1 1px, transparent 1px);
-      background-size: 20px 20px;
+      padding: 10px;
     }
 
     .container {
@@ -41,140 +37,136 @@
       margin: 0 auto;
       background: var(--card-bg);
       border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       overflow: hidden;
-      border: 3px solid #f3e5d8;
+      border: 2px solid #f3e5d8;
     }
 
     header {
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      padding: 30px 20px;
+      padding: 20px;
       text-align: center;
-      position: relative;
     }
 
     header h1 {
       font-family: 'Fredoka', cursive;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
       margin-bottom: 5px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
     header p {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       background: var(--yellow);
       color: var(--primary-dark);
       display: inline-block;
-      padding: 4px 16px;
+      padding: 4px 14px;
       border-radius: 20px;
-      margin-top: 5px;
     }
 
-    form {
-      padding: 25px;
-    }
+    form { padding: 20px 15px; }
 
     .step-card {
       background: #fff;
       border: 2px solid #f0e4d7;
       border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      padding: 16px;
+      margin-bottom: 20px;
     }
 
     .step-title {
       font-family: 'Fredoka', cursive;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--primary);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       border-bottom: 2px dashed #f0e4d7;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
 
     .step-number {
       background: var(--primary);
       color: white;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group:last-child {
-      margin-bottom: 0;
-    }
+    .form-group { margin-bottom: 14px; }
 
     label {
       display: block;
       font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
+      font-size: 0.88rem;
+      margin-bottom: 5px;
       color: #4a5568;
     }
 
-    input[type="text"],
-    input[type="tel"],
-    select {
+    input[type="text"], input[type="tel"], select {
       width: 100%;
-      padding: 12px 14px;
+      padding: 10px 12px;
       border: 2px solid #e2e8f0;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 0.95rem;
       font-family: inherit;
-      transition: all 0.2s ease;
       outline: none;
     }
 
-    input:focus, select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.15);
+    input:focus, select:focus { border-color: var(--accent); }
+
+    .btn-geo {
+      width: 100%;
+      background: #34495e;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .geo-status {
+      font-size: 0.82rem;
+      margin-top: 6px;
+      font-weight: 600;
+      display: none;
     }
 
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
     }
 
-    .option-btn {
-      position: relative;
-    }
-
-    .option-btn input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-    }
+    .option-btn { position: relative; }
+    .option-btn input { position: absolute; opacity: 0; cursor: pointer; }
 
     .option-label {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 8px;
+      padding: 10px 6px;
       background: #f8f9fa;
       border: 2px solid #e9ecef;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       text-align: center;
-      transition: all 0.2s ease;
     }
 
     .option-btn input:checked + .option-label {
@@ -186,54 +178,43 @@
     .checkbox-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
 
     .checkbox-label {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 12px;
+      padding: 8px 10px;
       background: #f8f9fa;
       border: 2px solid #e9ecef;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
     }
 
-    .checkbox-label input {
-      accent-color: var(--primary);
-      width: 18px;
-      height: 18px;
-    }
+    .checkbox-label input { accent-color: var(--primary); width: 16px; height: 16px; }
 
     .btn-submit {
       width: 100%;
-      background: var(--primary);
+      background: var(--whatsapp-green);
       color: white;
       border: none;
       padding: 16px;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-family: 'Fredoka', cursive;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    .btn-submit:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    @media (max-width: 480px) {
-      .checkbox-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .btn-submit:hover { background: var(--whatsapp-dark); }
   </style>
 </head>
 <body>
@@ -252,16 +233,20 @@
           <span>Datos del Cliente</span>
         </div>
         <div class="form-group">
-          <label for="nombre">Nombre y Apellido</label>
+          <label for="nombre">Nombre y Apellido *</label>
           <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
         </div>
         <div class="form-group">
-          <label for="telefono">Teléfono (Celular)</label>
+          <label for="telefono">Teléfono (Celular) *</label>
           <input type="tel" id="telefono" name="telefono" placeholder="Ej. 33 1234 5678" required>
         </div>
         <div class="form-group">
-          <label for="direccion">Dirección Completa, Colonia y Referencias</label>
+          <label for="direccion">Dirección Completa, Colonia y Referencias *</label>
           <input type="text" id="direccion" name="direccion" placeholder="Calle, Número, Colonia y entre qué calles" required>
+          <button type="button" class="btn-geo" id="btnLocation">
+            <span>📍</span> Adjuntar mi ubicación GPS
+          </button>
+          <p id="geoStatus" class="geo-status"></p>
         </div>
       </div>
 
@@ -311,7 +296,7 @@
               <span class="option-label">Muy Picosa</span>
             </label>
             <label class="option-btn">
-              <input type="radio" name="salsa" value="Sin Salsa (Aparte)">
+              <input type="radio" name="salsa" value="Sin Salsa">
               <span class="option-label">Sin Salsa</span>
             </label>
           </div>
@@ -321,7 +306,7 @@
           <label>Complementos Incluidos</label>
           <div class="checkbox-grid">
             <label class="checkbox-label">
-              <input type="checkbox" name="complementos" value="Cebolla Encurtida" checked> Cebolla Encurtida
+              <input type="checkbox" name="complementos" value="Cebolla Encurtida" checked> Cebolla
             </label>
             <label class="checkbox-label">
               <input type="checkbox" name="complementos" value="Limón" checked> Limón
@@ -346,11 +331,11 @@
         <div class="form-group">
           <label for="cantTortas">Número de Tortas</label>
           <select id="cantTortas" name="cantTortas">
-            <option value="1">1 Torta</option>
-            <option value="2">2 Tortas</option>
-            <option value="3">3 Tortas</option>
-            <option value="4">4 Tortas</option>
-            <option value="5+">5 o más</option>
+            <option value="1 Torta">1 Torta</option>
+            <option value="2 Tortas">2 Tortas</option>
+            <option value="3 Tortas">3 Tortas</option>
+            <option value="4 Tortas">4 Tortas</option>
+            <option value="5+ Tortas">5 o más</option>
           </select>
         </div>
 
@@ -379,5 +364,147 @@
         <div class="form-group">
           <label for="bebida">Bebidas</label>
           <select id="bebida" name="bebida">
-            <option value="Sin Bebida">Sin Bebida</
-  
+            <option value="Sin Bebida">Sin Bebida</option>
+            <option value="Refresco">Refresco (Lata / Botella)</option>
+            <option value="Agua del Día">Agua Fresca del Día</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 4. DATOS DE ENTREGA Y PAGO -->
+      <div class="step-card">
+        <div class="step-title">
+          <span class="step-number">4</span>
+          <span>Entrega y Pago</span>
+        </div>
+        
+        <div class="form-group">
+          <label>Hora de Pedido</label>
+          <div class="options-grid">
+            <label class="option-btn">
+              <input type="radio" name="hora" value="Lo antes posible (ASAP)" checked>
+              <span class="option-label">ASAP</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="hora" value="Programar Hora">
+              <span class="option-label">Programar</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Método de Pago</label>
+          <div class="options-grid">
+            <label class="option-btn">
+              <input type="radio" name="pago" value="Efectivo" checked>
+              <span class="option-label">Efectivo</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="pago" value="Tarjeta">
+              <span class="option-label">Tarjeta</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <span>Enviar Pedido por WhatsApp</span>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    let mapUrl = "";
+
+    // Botón para Geolocalización GPS
+    const btnLocation = document.getElementById('btnLocation');
+    const geoStatus = document.getElementById('geoStatus');
+
+    btnLocation.addEventListener('click', () => {
+      geoStatus.style.display = 'block';
+
+      if (!navigator.geolocation) {
+        geoStatus.style.color = '#c0392b';
+        geoStatus.textContent = 'Tu dispositivo no permite la geolocalización automática.';
+        return;
+      }
+
+      geoStatus.style.color = '#27ae60';
+      geoStatus.textContent = 'Obteniendo GPS... Presiona "Permitir" si el navegador lo solicita.';
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          mapUrl = `https://maps.google.com/?q=${lat},${lng}`;
+          geoStatus.style.color = '#27ae60';
+          geoStatus.textContent = '¡Ubicación GPS agregada con éxito!';
+        },
+        (error) => {
+          geoStatus.style.color = '#c0392b';
+          geoStatus.textContent = 'Ubicación desactivada o no permitida. El pedido se enviará con tu dirección escrita.';
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    });
+
+    // Envío del Pedido a WhatsApp
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const phone = "523319053634";
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const direccion = document.getElementById('direccion').value.trim();
+
+      const relleno = document.querySelector('input[name="relleno"]:checked').value;
+      const salsa = document.querySelector('input[name="salsa"]:checked').value;
+
+      const complementosList = Array.from(document.querySelectorAll('input[name="complementos"]:checked'))
+                                    .map(el => el.value)
+                                    .join(', ') || 'Ninguno';
+
+      const cantTortas = document.getElementById('cantTortas').value;
+      const tacos = document.querySelector('input[name="tacos"]:checked').value;
+      const bebida = document.getElementById('bebida').value;
+
+      const hora = document.querySelector('input[name="hora"]:checked').value;
+      const pago = document.querySelector('input[name="pago"]:checked').value;
+
+      let text = `*NUEVO PEDIDO DE TORTAS AHOGADAS*\n\n`;
+      text += `👤 *Cliente:* ${nombre}\n`;
+      text += `📞 *Teléfono:* ${telefono}\n`;
+      text += `📍 *Dirección:* ${direccion}\n`;
+      if (mapUrl) {
+        text += `🗺️ *Ubicación GPS:* ${mapUrl}\n`;
+      }
+      text += `\n--- DETALLE DEL PEDIDO ---\n`;
+      text += `🥖 *Pan:* Birote Salado Tradicional\n`;
+      text += `🥩 *Relleno:* ${relleno}\n`;
+      text += `🌶️ *Salsa:* ${salsa}\n`;
+      text += `🥗 *Complementos:* ${complementosList}\n\n`;
+      text += `--- CANTIDAD Y BEBIDAS ---\n`;
+      text += `🥪 *Tortas:* ${cantTortas}\n`;
+      text += `🌮 *Tacos Dorados:* ${tacos}\n`;
+      text += `🥤 *Bebida:* ${bebida}\n\n`;
+      text += `--- ENTREGA Y PAGO ---\n`;
+      text += `⏰ *Hora:* ${hora}\n`;
+      text += `💳 *Pago:* ${pago}\n`;
+
+      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+      // Romper el iFrame de Google Sites para redirigir directamente a WhatsApp
+      try {
+        if (window.top) {
+          window.top.location.href = whatsappUrl;
+        } else {
+          window.location.href = whatsappUrl;
+        }
+      } catch (err) {
+        window.open(whatsappUrl, '_blank');
+      }
+    });
+  </script>
+</body>
+</html>
