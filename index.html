@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pedidos - Tortas Ahogadas a Domicilio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #c0392b;
+      --primary-dark: #8e1c10;
+      --accent: #d35400;
+      --yellow: #f1c40f;
+      --cream: #fff9f0;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+      --border-radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px 12px;
+      background-image: radial-gradient(#e2d3c1 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 3px solid #f3e5d8;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: var(--yellow);
+      color: var(--primary-dark);
+      display: inline-block;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-top: 5px;
+    }
+
+    form {
+      padding: 25px;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 2px solid #f0e4d7;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .step-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px dashed #f0e4d7;
+      padding-bottom: 8px;
+    }
+
+    .step-number {
+      background: var(--primary);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #4a5568;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.15);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      position: relative;
+    }
+
+    .option-btn input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .option-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 8px;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn input:checked + .option-label {
+      background: #fdf2e9;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .checkbox-label input {
+      accent-color: var(--primary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 1.2rem;
+      font-family: 'Fredoka', cursive;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 480px) {
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Tortas Ahogadas</h1>
+      <p>Formulario de Pedidos a Domicilio</p>
+    </header>
+
+    <form id="orderForm">
+      <!-- 1. DATOS DEL CLIENTE -->
+      <div class="step-card">
+        <div class="step-title">
+          <span class="step-number">1</span>
+          <span>Datos del Cliente</span>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre y Apellido</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono (Celular)</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ej. 33 1234 5678" required>
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección Completa, Colonia y Referencias</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Calle, Número, Colonia y entre qué calles" required>
+        </div>
+      </div>
+
+      <!-- 2. ARMA TU TORTA AHOGADA -->
+      <div class="step-card">
+        <div class="step-title">
+          <span class="step-number">2</span>
+          <span>Arma tu Torta Ahogada</span>
+        </div>
+        
+        <div class="form-group">
+          <label>Pan</label>
+          <input type="text" value="Birote Salado (Tradicional)" readonly style="background: #f1f3f5; cursor: not-allowed;">
+        </div>
+
+        <div class="form-group">
+          <label>Relleno Principal</label>
+          <div class="options-grid">
+            <label class="option-btn">
+              <input type="radio" name="relleno" value="Carnitas" checked>
+              <span class="option-label">Carnitas</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="relleno" value="Frijoles">
+              <span class="option-label">Frijoles</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="relleno" value="Mixta">
+              <span class="option-label">Mixta</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nivel de Salsa (Picante)</label>
+          <div class="options-grid">
+            <label class="option-btn">
+              <input type="radio" name="salsa" value="Poca Pica">
+              <span class="option-label">Poca Pica</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="salsa" value="Mediana" checked>
+              <span class="option-label">Mediana</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="salsa" value="Muy Picosa">
+              <span class="option-label">Muy Picosa</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="salsa" value="Sin Salsa (Aparte)">
+              <span class="option-label">Sin Salsa</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Complementos Incluidos</label>
+          <div class="checkbox-grid">
+            <label class="checkbox-label">
+              <input type="checkbox" name="complementos" value="Cebolla Encurtida" checked> Cebolla Encurtida
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="complementos" value="Limón" checked> Limón
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="complementos" value="Repollo" checked> Repollo
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="complementos" value="Rábano" checked> Rábano
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CANTIDAD Y ADICIONALES -->
+      <div class="step-card">
+        <div class="step-title">
+          <span class="step-number">3</span>
+          <span>Cantidad y Adicionales</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="cantTortas">Número de Tortas</label>
+          <select id="cantTortas" name="cantTortas">
+            <option value="1">1 Torta</option>
+            <option value="2">2 Tortas</option>
+            <option value="3">3 Tortas</option>
+            <option value="4">4 Tortas</option>
+            <option value="5+">5 o más</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tacos Dorados Adicionales</label>
+          <div class="options-grid">
+            <label class="option-btn">
+              <input type="radio" name="tacos" value="Ninguno" checked>
+              <span class="option-label">Ninguno</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="tacos" value="2 Tacos">
+              <span class="option-label">2 Tacos</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="tacos" value="3 Tacos">
+              <span class="option-label">3 Tacos</span>
+            </label>
+            <label class="option-btn">
+              <input type="radio" name="tacos" value="5 Tacos">
+              <span class="option-label">5 Tacos</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bebida">Bebidas</label>
+          <select id="bebida" name="bebida">
+            <option value="Sin Bebida">Sin Bebida</
+  
