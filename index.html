@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,9 +17,7 @@
       --accent: #d35400;
       --yellow: #f1c40f;
       --cream: #fff9f0;
-      --card-bg: #ffffff;
       --text: #2c3e50;
-      --border-radius: 16px;
       --whatsapp-green: #25D366;
       --whatsapp-dark: #128C7E;
     }
@@ -31,7 +30,7 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--cream);
+      background: var(--cream);
       color: var(--text);
       line-height: 1.5;
       padding: 10px;
@@ -40,8 +39,8 @@
     .container {
       max-width: 680px;
       margin: 0 auto;
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
+      background: white;
+      border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       overflow: hidden;
       border: 2px solid #f3e5d8;
@@ -147,7 +146,7 @@
     .btn-geo {
       width: 100%;
       background: #34495e;
-      color: #fff;
+      color: white;
       border: none;
       padding: 10px;
       border-radius: 8px;
@@ -155,10 +154,6 @@
       font-weight: 600;
       cursor: pointer;
       margin-top: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
     }
 
     .btn-geo:disabled {
@@ -171,7 +166,6 @@
       margin-top: 6px;
       font-weight: 600;
       display: none;
-      overflow-wrap: anywhere;
     }
 
     .options-grid {
@@ -182,12 +176,12 @@
 
     .option-btn {
       position: relative;
+      cursor: pointer;
     }
 
     .option-btn input {
       position: absolute;
       opacity: 0;
-      cursor: pointer;
     }
 
     .option-label {
@@ -211,11 +205,6 @@
       color: var(--accent);
     }
 
-    .option-btn input:focus-visible + .option-label {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
     .btn-submit {
       width: 100%;
       background: var(--whatsapp-green);
@@ -226,16 +215,24 @@
       font-family: 'Fredoka', cursive;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      box-shadow: 0 4px 12px rgba(37,211,102,.4);
       text-transform: uppercase;
     }
 
     .btn-submit:hover {
       background: var(--whatsapp-dark);
+    }
+
+    .btn-submit:disabled {
+      opacity: .7;
+      cursor: wait;
+    }
+
+    .notice {
+      font-size: .82rem;
+      margin-top: 12px;
+      color: #52606d;
+      text-align: center;
     }
   </style>
 </head>
@@ -256,7 +253,7 @@
 
     <form id="orderForm">
 
-      <!-- 1. DATOS DEL CLIENTE -->
+      <!-- DATOS DEL CLIENTE -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">1</span>
@@ -276,7 +273,7 @@
         </div>
 
         <div class="form-group">
-          <label for="telefono">Teléfono (Celular) *</label>
+          <label for="telefono">Teléfono del cliente *</label>
           <input
             type="tel"
             id="telefono"
@@ -289,7 +286,7 @@
 
         <div class="form-group">
           <label for="direccion">
-            Dirección Completa, Colonia y Referencias *
+            Dirección completa, colonia y referencias *
           </label>
 
           <input
@@ -301,15 +298,19 @@
             required
           >
 
-          <button type="button" class="btn-geo" id="btnLocation">
-            <span>📍</span> Adjuntar mi ubicación GPS
+          <button
+            type="button"
+            class="btn-geo"
+            id="btnLocation"
+          >
+            📍 Adjuntar mi ubicación GPS
           </button>
 
           <p id="geoStatus" class="geo-status" role="status"></p>
         </div>
       </div>
 
-      <!-- 2. PAQUETES -->
+      <!-- PAQUETES -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">2</span>
@@ -370,19 +371,30 @@
         </div>
 
         <div class="form-group">
-          <label for="cantidadPaquetes">Cantidad de paquetes</label>
+          <label for="cantidadPaquetes">
+            Cantidad de paquetes *
+          </label>
 
-          <select id="cantidadPaquetes" name="cantidadPaquetes">
+          <select
+            id="cantidadPaquetes"
+            name="cantidadPaquetes"
+            required
+          >
             <option value="1" selected>1 paquete</option>
             <option value="2">2 paquetes</option>
             <option value="3">3 paquetes</option>
             <option value="4">4 paquetes</option>
-            <option value="5 o más">5 o más paquetes</option>
+            <option value="5">5 paquetes</option>
+            <option value="6">6 paquetes</option>
+            <option value="7">7 paquetes</option>
+            <option value="8">8 paquetes</option>
+            <option value="9">9 paquetes</option>
+            <option value="10">10 paquetes</option>
           </select>
         </div>
       </div>
 
-      <!-- 3. ENTREGA Y PAGO -->
+      <!-- ENTREGA Y PAGO -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">3</span>
@@ -390,7 +402,7 @@
         </div>
 
         <div class="form-group">
-          <label>Hora de Pedido</label>
+          <label>Entrega</label>
 
           <div class="options-grid">
             <label class="option-btn">
@@ -400,13 +412,15 @@
                 value="Lo antes posible"
                 checked
               >
-              <span class="option-label">Lo antes posible</span>
+              <span class="option-label">
+                Lo antes posible
+              </span>
             </label>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Método de Pago</label>
+          <label>Método de pago</label>
 
           <div class="options-grid">
             <label class="option-btn">
@@ -422,37 +436,46 @@
         </div>
       </div>
 
-      <button type="submit" class="btn-submit">
-        Enviar Pedido por WhatsApp
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        Enviar pedido por WhatsApp
       </button>
+
+      <p class="notice">
+        Revisa tus datos antes de enviar. WhatsApp abrirá el pedido
+        para que puedas confirmar el envío.
+      </p>
 
     </form>
   </div>
 
   <script>
-    // WHATSAPP DEL NEGOCIO: TORTAS AHOGADAS EL PÍCORO
-    const phone = "523319053634";
+    // NÚMERO DESTINO PARA LAS PRUEBAS.
+    // Código de México + número, sin espacios ni signos.
+    const WHATSAPP_NUMBER = "523319053634";
 
     let mapUrl = "";
 
+    const form = document.getElementById("orderForm");
     const btnLocation = document.getElementById("btnLocation");
     const geoStatus = document.getElementById("geoStatus");
+    const btnSubmit = document.getElementById("btnSubmit");
 
     // OBTENER UBICACIÓN GPS
     btnLocation.addEventListener("click", () => {
       geoStatus.style.display = "block";
+      mapUrl = "";
 
       if (!navigator.geolocation) {
         geoStatus.style.color = "#c0392b";
         geoStatus.textContent =
-          "Tu dispositivo o navegador no permite la geolocalización.";
+          "Este navegador no permite obtener la ubicación automática.";
         return;
       }
 
       btnLocation.disabled = true;
-      geoStatus.style.color = "#27ae60";
+      geoStatus.style.color = "#34495e";
       geoStatus.textContent =
-        'Obteniendo GPS... Presiona "Permitir" si el navegador lo solicita.';
+        'Obteniendo ubicación GPS. Permite el acceso si el navegador lo solicita.';
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -461,122 +484,119 @@
 
           mapUrl = `https://maps.google.com/?q=${lat},${lng}`;
 
-          geoStatus.style.color = "#27ae60";
+          geoStatus.style.color = "#218838";
           geoStatus.textContent =
-            "¡Ubicación GPS agregada con éxito!";
+            "Ubicación GPS agregada correctamente.";
 
           btnLocation.disabled = false;
-          btnLocation.innerHTML =
-            "<span>📍</span> Actualizar mi ubicación GPS";
         },
 
         (error) => {
-          mapUrl = "";
-          geoStatus.style.color = "#c0392b";
+          let message =
+            "No se pudo obtener la ubicación. Escribe tu dirección completa.";
 
           if (error.code === error.PERMISSION_DENIED) {
-            geoStatus.textContent =
-              "Permiso de ubicación denegado. Activa el permiso de ubicación para este sitio en el navegador.";
+            message =
+              "No se permitió el acceso al GPS. Autoriza la ubicación o escribe tu dirección.";
           } else if (error.code === error.TIMEOUT) {
-            geoStatus.textContent =
-              "La ubicación tardó demasiado. Activa el GPS e inténtalo de nuevo.";
-          } else {
-            geoStatus.textContent =
-              "No se pudo obtener la ubicación. Revisa el GPS y los permisos del navegador.";
+            message =
+              "La ubicación tardó demasiado. Inténtalo de nuevo o escribe tu dirección.";
           }
 
+          geoStatus.style.color = "#c0392b";
+          geoStatus.textContent = message;
           btnLocation.disabled = false;
-          btnLocation.innerHTML =
-            "<span>📍</span> Intentar obtener ubicación GPS";
         },
 
         {
           enableHighAccuracy: true,
-          timeout: 20000,
+          timeout: 12000,
           maximumAge: 0
         }
       );
     });
 
-    // PREPARAR EL PEDIDO PARA EL WHATSAPP DEL NEGOCIO
-    document.getElementById("orderForm").addEventListener(
-      "submit",
-      function(e) {
-        e.preventDefault();
+    // PREPARAR Y ABRIR EL PEDIDO EN EL WHATSAPP DESTINO
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-        const nombre =
-          document.getElementById("nombre").value.trim();
-
-        const telefonoCliente =
-          document.getElementById("telefono").value.trim();
-
-        const direccion =
-          document.getElementById("direccion").value.trim();
-
-        const paqueteSeleccionado =
-          document.querySelector('input[name="paquete"]:checked');
-
-        if (!paqueteSeleccionado) {
-          alert("Por favor, selecciona un paquete.");
-          return;
-        }
-
-        const paquete = paqueteSeleccionado.value;
-
-        const cantidadPaquetes =
-          document.getElementById("cantidadPaquetes").value;
-
-        const horaSeleccionada =
-          document.querySelector('input[name="hora"]:checked');
-
-        const pagoSeleccionado =
-          document.querySelector('input[name="pago"]:checked');
-
-        const hora = horaSeleccionada
-          ? horaSeleccionada.value
-          : "Lo antes posible";
-
-        const pago = pagoSeleccionado
-          ? pagoSeleccionado.value
-          : "Efectivo";
-
-        let text = "*NUEVO PEDIDO - TORTAS AHOGADAS EL PÍCORO*\n\n";
-
-        text += `*Cliente:* ${nombre}\n`;
-        text += `*Teléfono del cliente:* ${telefonoCliente}\n`;
-        text += `*Dirección:* ${direccion}\n`;
-
-        if (mapUrl) {
-          text += `*Ubicación GPS:* ${mapUrl}\n`;
-        }
-
-        text += "\n--- DETALLE DEL PEDIDO ---\n";
-        text += `*Paquete:* ${paquete}\n`;
-        text += `*Cantidad de paquetes:* ${cantidadPaquetes}\n`;
-
-        text += "\n--- ENTREGA Y PAGO ---\n";
-        text += `*Hora:* ${hora}\n`;
-        text += `*Pago:* ${pago}\n`;
-
-        // EL DESTINATARIO SIEMPRE ES EL WHATSAPP DEL NEGOCIO.
-        const whatsappUrl =
-          "https://api.whatsapp.com/send?phone=" +
-          phone +
-          "&text=" +
-          encodeURIComponent(text);
-
-        // Abrir el enlace sin cambiar la página del formulario.
-        const whatsappWindow = window.open(
-          whatsappUrl,
-          "_blank"
-        );
-
-        // Alternativa si el navegador bloquea la ventana emergente.
-        if (!whatsappWindow) {
-          window.location.href = whatsappUrl;
-        }
+      if (!form.reportValidity()) {
+        return;
       }
-    );
+
+      const paqueteSeleccionado =
+        document.querySelector('input[name="paquete"]:checked');
+
+      if (!paqueteSeleccionado) {
+        alert("Selecciona el paquete que deseas pedir.");
+        return;
+      }
+
+      const nombre =
+        document.getElementById("nombre").value.trim();
+
+      const telefono =
+        document.getElementById("telefono").value.trim();
+
+      const direccion =
+        document.getElementById("direccion").value.trim();
+
+      const paquete = paqueteSeleccionado.value;
+
+      const cantidadPaquetes =
+        document.getElementById("cantidadPaquetes").value;
+
+      const hora =
+        document.querySelector('input[name="hora"]:checked').value;
+
+      const pago =
+        document.querySelector('input[name="pago"]:checked').value;
+
+      if (!nombre || !telefono || !direccion) {
+        alert("Completa todos los datos obligatorios.");
+        return;
+      }
+
+      const lineas = [
+        "*NUEVO PEDIDO - TORTAS AHOGADAS EL PÍCORO*",
+        "",
+        `*Cliente:* ${nombre}`,
+        `*Teléfono del cliente:* ${telefono}`,
+        `*Dirección de entrega:* ${direccion}`,
+        mapUrl ? `*Ubicación GPS:* ${mapUrl}` : "",
+        "",
+        "*DETALLE DEL PEDIDO*",
+        `*Paquete seleccionado:* ${paquete}`,
+        `*Cantidad de paquetes:* ${cantidadPaquetes}`,
+        "",
+        "*ENTREGA Y PAGO*",
+        `*Entrega:* ${hora}`,
+        `*Método de pago:* ${pago}`,
+        "",
+        "*Pedido enviado desde el formulario web.*"
+      ];
+
+      const mensaje = lineas
+        .filter((linea) => linea !== "")
+        .join("\n");
+
+      
+      const whatsappUrl =
+        "https://api.whatsapp.com/send?phone=523319053634&text=" +
+        encodeURIComponent(mensaje);
+      
+
+      // Abrir WhatsApp directamente al número del negocio.
+      const nuevaVentana = window.open(
+        whatsappUrl,
+        "_blank"
+      );
+
+      // Alternativa si el navegador bloquea la nueva ventana.
+      if (!nuevaVentana) {
+        window.location.href = whatsappUrl;
+      }
+    });
   </script>
 </body>
 </html>
