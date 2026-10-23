@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pedidos - Tortas Ahogadas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - Tortas Ahogadas El Pícoro</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --primary: #c0392b;
@@ -22,7 +24,11 @@
       --whatsapp-dark: #128C7E;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -66,7 +72,16 @@
       border-radius: 20px;
     }
 
-    form { padding: 20px 15px; }
+    .business-info {
+      margin-top: 12px;
+      font-size: .9rem;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    form {
+      padding: 20px 15px;
+    }
 
     .step-card {
       background: #fff;
@@ -97,30 +112,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: .85rem;
+      flex-shrink: 0;
     }
 
-    .form-group { margin-bottom: 14px; }
+    .form-group {
+      margin-bottom: 14px;
+    }
 
     label {
       display: block;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: .88rem;
       margin-bottom: 5px;
       color: #4a5568;
     }
 
-    input[type="text"], input[type="tel"], select {
+    input[type="text"],
+    input[type="tel"],
+    select {
       width: 100%;
       padding: 10px 12px;
       border: 2px solid #e2e8f0;
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: .95rem;
       font-family: inherit;
       outline: none;
     }
 
-    input:focus, select:focus { border-color: var(--accent); }
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+    }
 
     .btn-geo {
       width: 100%;
@@ -129,7 +152,7 @@
       border: none;
       padding: 10px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: .85rem;
       font-weight: 600;
       cursor: pointer;
       margin-top: 8px;
@@ -139,33 +162,47 @@
       gap: 6px;
     }
 
+    .btn-geo:disabled {
+      opacity: .7;
+      cursor: wait;
+    }
+
     .geo-status {
-      font-size: 0.82rem;
+      font-size: .82rem;
       margin-top: 6px;
       font-weight: 600;
       display: none;
+      overflow-wrap: anywhere;
     }
 
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 8px;
     }
 
-    .option-btn { position: relative; }
-    .option-btn input { position: absolute; opacity: 0; cursor: pointer; }
+    .option-btn {
+      position: relative;
+    }
+
+    .option-btn input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
 
     .option-label {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 6px;
+      min-height: 58px;
+      padding: 10px 8px;
       background: #f8f9fa;
       border: 2px solid #e9ecef;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: .88rem;
       text-align: center;
     }
 
@@ -175,26 +212,10 @@
       color: var(--accent);
     }
 
-    .checkbox-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+    .option-btn input:focus-visible + .option-label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
-
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      background: #f8f9fa;
-      border: 2px solid #e9ecef;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    .checkbox-label input { accent-color: var(--primary); width: 16px; height: 16px; }
 
     .btn-submit {
       width: 100%;
@@ -214,194 +235,187 @@
       text-transform: uppercase;
     }
 
-    .btn-submit:hover { background: var(--whatsapp-dark); }
+    .btn-submit:hover {
+      background: var(--whatsapp-dark);
+    }
   </style>
 </head>
-<body>
 
+<body>
   <div class="container">
+
     <header>
-      <h1>Tortas Ahogadas</h1>
+      <h1>Tortas Ahogadas El Pícoro</h1>
       <p>Formulario de Pedidos a Domicilio</p>
+
+      <div class="business-info">
+        <div>1 de Mayo núm. 85, Santa Cruz del Valle</div>
+        <div>Teléfonos: 608 5413 · 33-1832-5771</div>
+        <div>Servicio a domicilio</div>
+      </div>
     </header>
 
     <form id="orderForm">
+
       <!-- 1. DATOS DEL CLIENTE -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">1</span>
           <span>Datos del Cliente</span>
         </div>
+
         <div class="form-group">
           <label for="nombre">Nombre y Apellido *</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Ej. Juan Pérez"
+            required
+          >
         </div>
+
         <div class="form-group">
           <label for="telefono">Teléfono (Celular) *</label>
-          <input type="tel" id="telefono" name="telefono" placeholder="Ej. 33 1234 5678" required>
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            placeholder="Ej. 33 1234 5678"
+            required
+          >
         </div>
+
         <div class="form-group">
-          <label for="direccion">Dirección Completa, Colonia y Referencias *</label>
-          <input type="text" id="direccion" name="direccion" placeholder="Calle, Número, Colonia y entre qué calles" required>
+          <label for="direccion">
+            Dirección Completa, Colonia y Referencias *
+          </label>
+
+          <input
+            type="text"
+            id="direccion"
+            name="direccion"
+            placeholder="Calle, número, colonia y entre qué calles"
+            required
+          >
+
           <button type="button" class="btn-geo" id="btnLocation">
             <span>📍</span> Adjuntar mi ubicación GPS
           </button>
-          <p id="geoStatus" class="geo-status"></p>
+
+          <p id="geoStatus" class="geo-status" role="status"></p>
         </div>
       </div>
 
-      <!-- 2. ARMA TU TORTA AHOGADA -->
+      <!-- 2. PAQUETES -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">2</span>
-          <span>Arma tu Torta Ahogada</span>
-        </div>
-        
-        <div class="form-group">
-          <label>Pan</label>
-          <input type="text" value="Birote Salado (Tradicional)" readonly style="background: #f1f3f5; cursor: not-allowed;">
+          <span>Elige tu paquete</span>
         </div>
 
         <div class="form-group">
-          <label>Relleno Principal</label>
+          <label>Selecciona el paquete que deseas *</label>
+
           <div class="options-grid">
+
             <label class="option-btn">
-              <input type="radio" name="relleno" value="Carnitas" checked>
-              <span class="option-label">Carnitas</span>
+              <input
+                type="radio"
+                name="paquete"
+                value="Paquete mini: 1 torta"
+                required
+              >
+              <span class="option-label">
+                Paquete mini<br>1 torta
+              </span>
             </label>
+
             <label class="option-btn">
-              <input type="radio" name="relleno" value="Frijoles">
-              <span class="option-label">Frijoles</span>
+              <input
+                type="radio"
+                name="paquete"
+                value="Paquete 1: 1 torta y 2 tacos"
+              >
+              <span class="option-label">
+                Paquete 1<br>1 torta y 2 tacos
+              </span>
             </label>
+
             <label class="option-btn">
-              <input type="radio" name="relleno" value="Mixta">
-              <span class="option-label">Mixta</span>
+              <input
+                type="radio"
+                name="paquete"
+                value="Paquete 2: 4 tortas y 5 tacos"
+              >
+              <span class="option-label">
+                Paquete 2<br>4 tortas y 5 tacos
+              </span>
             </label>
+
+            <label class="option-btn">
+              <input
+                type="radio"
+                name="paquete"
+                value="Paquete 3: 5 tortas y 10 tacos"
+              >
+              <span class="option-label">
+                Paquete 3<br>5 tortas y 10 tacos
+              </span>
+            </label>
+
           </div>
         </div>
 
         <div class="form-group">
-          <label>Nivel de Salsa (Picante)</label>
-          <div class="options-grid">
-            <label class="option-btn">
-              <input type="radio" name="salsa" value="Poca Pica">
-              <span class="option-label">Poca Pica</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="salsa" value="Mediana" checked>
-              <span class="option-label">Mediana</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="salsa" value="Muy Picosa">
-              <span class="option-label">Muy Picosa</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="salsa" value="Sin Salsa">
-              <span class="option-label">Sin Salsa</span>
-            </label>
-          </div>
-        </div>
+          <label for="cantidadPaquetes">Cantidad de paquetes</label>
 
-        <div class="form-group">
-          <label>Complementos Incluidos</label>
-          <div class="checkbox-grid">
-            <label class="checkbox-label">
-              <input type="checkbox" name="complementos" value="Cebolla Encurtida" checked> Cebolla
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="complementos" value="Limón" checked> Limón
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="complementos" value="Repollo" checked> Repollo
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="complementos" value="Rábano" checked> Rábano
-            </label>
-          </div>
+          <select id="cantidadPaquetes" name="cantidadPaquetes">
+            <option value="0">0</option>
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5 o más">5 o más</option>
+          </select>
         </div>
       </div>
 
-      <!-- 3. CANTIDAD Y ADICIONALES -->
+      <!-- 3. ENTREGA Y PAGO -->
       <div class="step-card">
         <div class="step-title">
           <span class="step-number">3</span>
-          <span>Cantidad y Adicionales</span>
-        </div>
-        
-        <div class="form-group">
-          <label for="cantTortas">Número de Tortas</label>
-          <select id="cantTortas" name="cantTortas">
-            <option value="1 Torta">1 Torta</option>
-            <option value="2 Tortas">2 Tortas</option>
-            <option value="3 Tortas">3 Tortas</option>
-            <option value="4 Tortas">4 Tortas</option>
-            <option value="5+ Tortas">5 o más</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Tacos Dorados Adicionales</label>
-          <div class="options-grid">
-            <label class="option-btn">
-              <input type="radio" name="tacos" value="Ninguno" checked>
-              <span class="option-label">Ninguno</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="tacos" value="2 Tacos">
-              <span class="option-label">2 Tacos</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="tacos" value="3 Tacos">
-              <span class="option-label">3 Tacos</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="tacos" value="5 Tacos">
-              <span class="option-label">5 Tacos</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="bebida">Bebidas</label>
-          <select id="bebida" name="bebida">
-            <option value="Sin Bebida">Sin Bebida</option>
-            <option value="Refresco">Refresco (Lata / Botella)</option>
-            <option value="Agua del Día">Agua Fresca del Día</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- 4. DATOS DE ENTREGA Y PAGO -->
-      <div class="step-card">
-        <div class="step-title">
-          <span class="step-number">4</span>
           <span>Entrega y Pago</span>
         </div>
-        
+
         <div class="form-group">
           <label>Hora de Pedido</label>
+
           <div class="options-grid">
             <label class="option-btn">
-              <input type="radio" name="hora" value="Lo antes posible (ASAP)" checked>
-              <span class="option-label">ASAP</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="hora" value="Programar Hora">
-              <span class="option-label">Programar</span>
+              <input
+                type="radio"
+                name="hora"
+                value="Lo antes posible"
+                checked
+              >
+              <span class="option-label">Lo antes posible</span>
             </label>
           </div>
         </div>
 
         <div class="form-group">
           <label>Método de Pago</label>
+
           <div class="options-grid">
             <label class="option-btn">
-              <input type="radio" name="pago" value="Efectivo" checked>
+              <input
+                type="radio"
+                name="pago"
+                value="Efectivo"
+                checked
+              >
               <span class="option-label">Efectivo</span>
-            </label>
-            <label class="option-btn">
-              <input type="radio" name="pago" value="Tarjeta">
-              <span class="option-label">Tarjeta</span>
             </label>
           </div>
         </div>
@@ -410,101 +424,139 @@
       <button type="submit" class="btn-submit">
         <span>Enviar Pedido por WhatsApp</span>
       </button>
+
     </form>
   </div>
 
   <script>
     let mapUrl = "";
 
-    // Botón para Geolocalización GPS
-    const btnLocation = document.getElementById('btnLocation');
-    const geoStatus = document.getElementById('geoStatus');
+    const btnLocation = document.getElementById("btnLocation");
+    const geoStatus = document.getElementById("geoStatus");
 
-    btnLocation.addEventListener('click', () => {
-      geoStatus.style.display = 'block';
+    // GPS: conserva la función de geolocalización original.
+    btnLocation.addEventListener("click", () => {
+      geoStatus.style.display = "block";
 
       if (!navigator.geolocation) {
-        geoStatus.style.color = '#c0392b';
-        geoStatus.textContent = 'Tu dispositivo no permite la geolocalización automática.';
+        geoStatus.style.color = "#c0392b";
+        geoStatus.textContent =
+          "Tu dispositivo o navegador no permite la geolocalización.";
         return;
       }
 
-      geoStatus.style.color = '#27ae60';
-      geoStatus.textContent = 'Obteniendo GPS... Presiona "Permitir" si el navegador lo solicita.';
+      btnLocation.disabled = true;
+      geoStatus.style.color = "#27ae60";
+      geoStatus.textContent =
+        'Obteniendo GPS... Presiona "Permitir" si el navegador lo solicita.';
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
+
           mapUrl = `https://maps.google.com/?q=${lat},${lng}`;
-          geoStatus.style.color = '#27ae60';
-          geoStatus.textContent = '¡Ubicación GPS agregada con éxito!';
+
+          geoStatus.style.color = "#27ae60";
+          geoStatus.textContent =
+            "¡Ubicación GPS agregada con éxito!";
+
+          btnLocation.disabled = false;
+          btnLocation.innerHTML =
+            "<span>📍</span> Actualizar mi ubicación GPS";
         },
+
         (error) => {
-          geoStatus.style.color = '#c0392b';
-          geoStatus.textContent = 'Ubicación desactivada o no permitida. El pedido se enviará con tu dirección escrita.';
+          mapUrl = "";
+          geoStatus.style.color = "#c0392b";
+
+          if (error.code === error.PERMISSION_DENIED) {
+            geoStatus.textContent =
+              "Permiso de ubicación denegado. Activa el permiso de ubicación para este sitio en el navegador.";
+          } else if (error.code === error.TIMEOUT) {
+            geoStatus.textContent =
+              "La ubicación tardó demasiado. Activa el GPS e inténtalo de nuevo.";
+          } else {
+            geoStatus.textContent =
+              "No se pudo obtener la ubicación. Revisa el GPS y los permisos del navegador.";
+          }
+
+          btnLocation.disabled = false;
+          btnLocation.innerHTML =
+            "<span>📍</span> Intentar obtener ubicación GPS";
         },
-        { enableHighAccuracy: true, timeout: 10000 }
+
+        {
+          enableHighAccuracy: true,
+          timeout: 20000,
+          maximumAge: 0
+        }
       );
     });
 
-    // Envío del Pedido a WhatsApp
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    // ENVÍO DEL PEDIDO POR WHATSAPP
+    document.getElementById("orderForm").addEventListener(
+      "submit",
+      function(e) {
+        e.preventDefault();
 
-      const phone = "523319053634";
+        // Número de WhatsApp que ya tenía el código original.
+        const phone = "523319053634";
 
-      const nombre = document.getElementById('nombre').value.trim();
-      const telefono = document.getElementById('telefono').value.trim();
-      const direccion = document.getElementById('direccion').value.trim();
+        const nombre =
+          document.getElementById("nombre").value.trim();
 
-      const relleno = document.querySelector('input[name="relleno"]:checked').value;
-      const salsa = document.querySelector('input[name="salsa"]:checked').value;
+        const telefono =
+          document.getElementById("telefono").value.trim();
 
-      const complementosList = Array.from(document.querySelectorAll('input[name="complementos"]:checked'))
-                                    .map(el => el.value)
-                                    .join(', ') || 'Ninguno';
+        const direccion =
+          document.getElementById("direccion").value.trim();
 
-      const cantTortas = document.getElementById('cantTortas').value;
-      const tacos = document.querySelector('input[name="tacos"]:checked').value;
-      const bebida = document.getElementById('bebida').value;
+        const paqueteSeleccionado =
+          document.querySelector('input[name="paquete"]:checked');
 
-      const hora = document.querySelector('input[name="hora"]:checked').value;
-      const pago = document.querySelector('input[name="pago"]:checked').value;
-
-      let text = `*NUEVO PEDIDO DE TORTAS AHOGADAS*\n\n`;
-      text += `👤 *Cliente:* ${nombre}\n`;
-      text += `📞 *Teléfono:* ${telefono}\n`;
-      text += `📍 *Dirección:* ${direccion}\n`;
-      if (mapUrl) {
-        text += `🗺️ *Ubicación GPS:* ${mapUrl}\n`;
-      }
-      text += `\n--- DETALLE DEL PEDIDO ---\n`;
-      text += `🥖 *Pan:* Birote Salado Tradicional\n`;
-      text += `🥩 *Relleno:* ${relleno}\n`;
-      text += `🌶️ *Salsa:* ${salsa}\n`;
-      text += `🥗 *Complementos:* ${complementosList}\n\n`;
-      text += `--- CANTIDAD Y BEBIDAS ---\n`;
-      text += `🥪 *Tortas:* ${cantTortas}\n`;
-      text += `🌮 *Tacos Dorados:* ${tacos}\n`;
-      text += `🥤 *Bebida:* ${bebida}\n\n`;
-      text += `--- ENTREGA Y PAGO ---\n`;
-      text += `⏰ *Hora:* ${hora}\n`;
-      text += `💳 *Pago:* ${pago}\n`;
-
-      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-
-      // Romper el iFrame de Google Sites para redirigir directamente a WhatsApp
-      try {
-        if (window.top) {
-          window.top.location.href = whatsappUrl;
-        } else {
-          window.location.href = whatsappUrl;
+        if (!paqueteSeleccionado) {
+          alert("Por favor, selecciona un paquete.");
+          return;
         }
-      } catch (err) {
-        window.open(whatsappUrl, '_blank');
+
+        const paquete = paqueteSeleccionado.value;
+
+        const cantidadPaquetes =
+          document.getElementById("cantidadPaquetes").value;
+
+        const hora =
+          document.querySelector('input[name="hora"]:checked').value;
+
+        const pago =
+          document.querySelector('input[name="pago"]:checked').value;
+
+        let text = "*NUEVO PEDIDO - TORTAS AHOGADAS EL PÍCORO*\n\n";
+
+        text += `*Cliente:* ${nombre}\n`;
+        text += `*Teléfono:* ${telefono}\n`;
+        text += `*Dirección:* ${direccion}\n`;
+
+        if (mapUrl) {
+          text += `*Ubicación GPS:* ${mapUrl}\n`;
+        }
+
+        text += "\n--- DETALLE DEL PEDIDO ---\n";
+        text += `*Paquete:* ${paquete}\n`;
+        text += `*Cantidad de paquetes:* ${cantidadPaquetes}\n`;
+
+        text += "\n--- ENTREGA Y PAGO ---\n";
+        text += `*Hora:* ${hora}\n`;
+        text += `*Pago:* ${pago}\n`;
+
+        const whatsappUrl =
+          `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+        // Abrir WhatsApp desde el navegador.
+        window.location.href = whatsappUrl;
       }
-    });
+    );
   </script>
 </body>
-</html>
+  </html>
+  
