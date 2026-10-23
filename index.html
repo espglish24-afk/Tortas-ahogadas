@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -271,6 +270,7 @@
             id="nombre"
             name="nombre"
             placeholder="Ej. Juan Pérez"
+            autocomplete="name"
             required
           >
         </div>
@@ -282,6 +282,7 @@
             id="telefono"
             name="telefono"
             placeholder="Ej. 33 1234 5678"
+            autocomplete="tel"
             required
           >
         </div>
@@ -296,6 +297,7 @@
             id="direccion"
             name="direccion"
             placeholder="Calle, número, colonia y entre qué calles"
+            autocomplete="street-address"
             required
           >
 
@@ -371,12 +373,11 @@
           <label for="cantidadPaquetes">Cantidad de paquetes</label>
 
           <select id="cantidadPaquetes" name="cantidadPaquetes">
-            <option value="0">0</option>
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5 o más">5 o más</option>
+            <option value="1" selected>1 paquete</option>
+            <option value="2">2 paquetes</option>
+            <option value="3">3 paquetes</option>
+            <option value="4">4 paquetes</option>
+            <option value="5 o más">5 o más paquetes</option>
           </select>
         </div>
       </div>
@@ -422,19 +423,22 @@
       </div>
 
       <button type="submit" class="btn-submit">
-        <span>Enviar Pedido por WhatsApp</span>
+        Enviar Pedido por WhatsApp
       </button>
 
     </form>
   </div>
 
   <script>
+    // WHATSAPP DEL NEGOCIO: TORTAS AHOGADAS EL PÍCORO
+    const phone = "523319053634";
+
     let mapUrl = "";
 
     const btnLocation = document.getElementById("btnLocation");
     const geoStatus = document.getElementById("geoStatus");
 
-    // GPS: conserva la función de geolocalización original.
+    // OBTENER UBICACIÓN GPS
     btnLocation.addEventListener("click", () => {
       geoStatus.style.display = "block";
 
@@ -494,19 +498,16 @@
       );
     });
 
-    // ENVÍO DEL PEDIDO POR WHATSAPP
+    // PREPARAR EL PEDIDO PARA EL WHATSAPP DEL NEGOCIO
     document.getElementById("orderForm").addEventListener(
       "submit",
       function(e) {
         e.preventDefault();
 
-        // Número de WhatsApp que ya tenía el código original.
-        const phone = "523319053634";
-
         const nombre =
           document.getElementById("nombre").value.trim();
 
-        const telefono =
+        const telefonoCliente =
           document.getElementById("telefono").value.trim();
 
         const direccion =
@@ -525,16 +526,24 @@
         const cantidadPaquetes =
           document.getElementById("cantidadPaquetes").value;
 
-        const hora =
-          document.querySelector('input[name="hora"]:checked').value;
+        const horaSeleccionada =
+          document.querySelector('input[name="hora"]:checked');
 
-        const pago =
-          document.querySelector('input[name="pago"]:checked').value;
+        const pagoSeleccionado =
+          document.querySelector('input[name="pago"]:checked');
+
+        const hora = horaSeleccionada
+          ? horaSeleccionada.value
+          : "Lo antes posible";
+
+        const pago = pagoSeleccionado
+          ? pagoSeleccionado.value
+          : "Efectivo";
 
         let text = "*NUEVO PEDIDO - TORTAS AHOGADAS EL PÍCORO*\n\n";
 
         text += `*Cliente:* ${nombre}\n`;
-        text += `*Teléfono:* ${telefono}\n`;
+        text += `*Teléfono del cliente:* ${telefonoCliente}\n`;
         text += `*Dirección:* ${direccion}\n`;
 
         if (mapUrl) {
@@ -549,14 +558,25 @@
         text += `*Hora:* ${hora}\n`;
         text += `*Pago:* ${pago}\n`;
 
+        // EL DESTINATARIO SIEMPRE ES EL WHATSAPP DEL NEGOCIO.
         const whatsappUrl =
-          `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+          "https://api.whatsapp.com/send?phone=" +
+          phone +
+          "&text=" +
+          encodeURIComponent(text);
 
-        // Abrir WhatsApp desde el navegador.
-        window.location.href = whatsappUrl;
+        // Abrir el enlace sin cambiar la página del formulario.
+        const whatsappWindow = window.open(
+          whatsappUrl,
+          "_blank"
+        );
+
+        // Alternativa si el navegador bloquea la ventana emergente.
+        if (!whatsappWindow) {
+          window.location.href = whatsappUrl;
+        }
       }
     );
   </script>
 </body>
-  </html>
-  
+</html>
